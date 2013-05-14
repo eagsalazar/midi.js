@@ -1,10 +1,12 @@
 module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
+
     watch:
       coffee:
         files: "<%= coffee.compile.src %>"
         tasks: 'coffee'
+
     coffee:
       compile:
         expand: true
@@ -12,6 +14,12 @@ module.exports = (grunt) ->
         src: '**/*.coffee'
         dest: "build/"
         ext: '.js'
+
+    connect:
+      server:
+        options:
+          port: 6888
+          base: 'demo/'
 
     uglify:
       options:
@@ -23,6 +31,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-contrib-connect')
 
-  grunt.registerTask('default', ['coffee', 'watch'])
+  grunt.registerTask('default', ['coffee', 'connect', 'watch'])
 
