@@ -14,4 +14,5 @@ Grunt Tasks
 
 - `grunt coffee` - Compile coffeescript
 - `grunt watch` - Compile coffeescript when .coffee files are saved
+- `grunt release` - Generate midi.js and midi.min.js
 

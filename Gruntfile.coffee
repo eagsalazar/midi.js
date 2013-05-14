@@ -21,17 +21,29 @@ module.exports = (grunt) ->
           port: 6888
           base: 'demo/'
 
-    uglify:
-      options:
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-        build:
-          src: 'build/**/*.js'
-          dest: '<%= pkg.name %>.min.js'
+     concat:
+        options:
+          banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+          stripBanners: true
+        dist:
+          src: "src/**/.js"
+          dest: "midi.js"
+
+      uglify:
+        options:
+          banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+          preserveComments: false
+          report: 'min'
+        dist:
+          files:
+             'midi.min.js': 'midi.js'
 
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-contrib-connect')
+  grunt.loadNpmTasks('grunt-contrib-concat')
 
   grunt.registerTask('default', ['coffee', 'connect', 'watch'])
+  grunt.registerTask('release', ['concat', 'uglify'])
 
