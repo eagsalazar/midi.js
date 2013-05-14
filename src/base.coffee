@@ -9,3 +9,4 @@ class Midi.Base
 
   set: (options) ->
     _.merge(@options, options)
+

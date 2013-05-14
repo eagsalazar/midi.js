@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "Play MIDI files in the browser.",
   "main": "midi.min.js",
-  "scripts": {
-    "test": "need-test"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/eagsalazar/midi.js.git"
@@ -13,7 +10,7 @@
   "keywords": [
     "midi"
   ],
-  "author": "Shaun Dern and Steve Salazar",
+  "author": "Shaun Dern & Steve Salazar",
   "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "270718ea3cedf08aa0fed780b81a78e17c981f41",
