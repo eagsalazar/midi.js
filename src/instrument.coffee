@@ -1,9 +1,6 @@
-class Midi.Instrument < Base
+class Midi.Instrument extends Midi.Base
 
   defaultOptions:
     soundFont: undefined
 
-  constructor: (options) ->
-    super options
-
-  playNote: (note) ->
+  playNote: (note, ms) ->

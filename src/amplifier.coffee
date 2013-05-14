@@ -1,7 +1,4 @@
-class Midi.Amplifier < Base
+class Midi.Amplifier extends Midi.Base
 
-  defaults:
+  defaultOptions:
     volume: 100
-
-  constructor: (options) ->
-    super options

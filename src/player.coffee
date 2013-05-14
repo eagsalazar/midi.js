@@ -1,4 +1,4 @@
-class Midi.Player < Midi.Base
+class Midi.Player extends Midi.Base
 
   defaultOptions:
 
@@ -28,8 +28,8 @@ class Midi.Player < Midi.Base
 
 
   constructor: (options) ->
-    @options.amplifier |= new Midi.Amplifier(_.pick(options, ['volume']))
-    @options.instrument |= new Midi.Instrument(_.pick(options, ['soundFont']))
+    @options.amplifier ||= new Midi.Amplifier(_.pick(options, ['volume']))
+    @options.instrument ||= new Midi.Instrument(_.pick(options, ['soundFont']))
 
     _.extend options,
       volume: undefined
