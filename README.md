@@ -9,6 +9,8 @@ Development
 - `npm install`
 - `grunt`
 
+Checkout demos @ `http://localhost:6888/demo/`
+
 Grunt Tasks
 -----------
 
