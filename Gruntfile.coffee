@@ -4,8 +4,8 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
-        files: "<%= coffee.compile.src %>"
-        tasks: 'coffee'
+        files: ["<%= coffee.compile.src %>"]
+        tasks: ['coffee', 'test']
 
     coffee:
       compile:
@@ -14,6 +14,31 @@ module.exports = (grunt) ->
         src: '**/*.coffee'
         dest: "build/"
         ext: '.js'
+      spec:
+        expand: true
+        cwd: 'spec/src/'
+        src: '**/*.coffee'
+        dest: "spec/build/"
+        ext: '.js'
+      dist:
+        options:
+          join: true
+        files:
+          "midi.js": ["src/base.coffee", "src/**/*.coffee"]
+
+    coffeelint:
+      app: ['src/**/*.coffee', 'spec/**/*.coffee']
+
+    jasmine:
+      tests:
+        src: 'midi.js'
+        options:
+          specs: 'spec/build/**/*Spec.js'
+          vendor: ['node_modules/lodash/lodash.js']
+
+    clean:
+      all: ["spec/build", "build"]
+      test: "spec/build"
 
     connect:
       server:
@@ -26,7 +51,7 @@ module.exports = (grunt) ->
           banner: "/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n"
           stripBanners: true
         dist:
-          src: "build/**/*.js"
+          src: "midi.js"
           dest: "midi.js"
 
       uglify:
@@ -43,7 +68,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-concat')
+  grunt.loadNpmTasks('grunt-contrib-jasmine')
+  grunt.loadNpmTasks('grunt-coffeelint')
+  grunt.loadNpmTasks('grunt-contrib-clean')
 
-  grunt.registerTask('default', ['coffee', 'connect', 'watch'])
-  grunt.registerTask('release', ['concat', 'uglify'])
+  grunt.registerTask('test', ['coffeelint', 'clean:test', 'coffee:dist', 'coffee:spec', 'jasmine'])
+  grunt.registerTask('default', ['clean:all', 'coffee:compile', 'connect', 'watch'])
+  grunt.registerTask('release', ['clean:all', 'coffee:compile', 'coffee:dist', 'concat', 'uglify'])
 
