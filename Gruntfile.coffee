@@ -34,7 +34,7 @@ module.exports = (grunt) ->
         src: ['build/base.js', 'build/**/*.js']
         options:
           specs: 'spec/build/**/*Spec.js'
-          vendor: ['node_modules/lodash/lodash.js', 'node_modules/jasmine-matchers/src/*.js']
+          vendor: ['node_modules/lodash/lodash.js']
 
     clean:
       all: ["spec/build", "build"]
