@@ -1,4 +1,4 @@
-window.Midi = {}
+window.Midi ||= {}
 class Midi.Base
 
   defaultOptions: {}

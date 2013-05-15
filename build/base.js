@@ -1,5 +1,5 @@
 (function() {
-  window.Midi = {};
+  window.Midi || (window.Midi = {});
 
   Midi.Base = (function() {
     Base.prototype.defaultOptions = {};
