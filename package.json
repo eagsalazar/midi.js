@@ -30,6 +30,7 @@
     "coffeescript-concat": "~1.0.4",
     "grunt-jasmine-node": "~0.1.0",
     "lodash": "~1.2.1",
-    "grunt-contrib-clean": "~0.4.1"
+    "grunt-contrib-clean": "~0.4.1",
+    "jasmine-matchers": "~0.2.2"
   }
 }
