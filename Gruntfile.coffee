@@ -48,7 +48,7 @@ module.exports = (grunt) ->
 
      concat:
         options:
-          banner: "/*! <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n"
+          banner: "<%= uglify.options.banner %>"
           stripBanners: true
         dist:
           src: "midi.js"
