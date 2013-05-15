@@ -31,7 +31,7 @@ module.exports = (grunt) ->
 
     jasmine:
       tests:
-        src: 'midi.js'
+        src: ['build/base.js', 'build/**/*.js']
         options:
           specs: 'spec/build/**/*Spec.js'
           vendor: ['node_modules/lodash/lodash.js']
