@@ -1,4 +1,4 @@
-window.Midi = {}
+window.Midi ||= {}
 class Midi.Base
 
   defaultOptions: {}
@@ -6,6 +6,10 @@ class Midi.Base
   constructor: (options) ->
     @options = _.clone(@defaultOptions)
     @set options
+    @
 
   set: (options) ->
-    _.merge(@options, options)
+    # FIXME - not deep copy!
+    # _.merge not available in underscore
+    _.extend(@options, options)
+    @
