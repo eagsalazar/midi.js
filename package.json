@@ -3,17 +3,18 @@
   "version": "0.0.0",
   "description": "Play MIDI files in the browser.",
   "main": "midi.min.js",
-  "scripts": {
-    "test": "need-test"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/eagsalazar/midi.js.git"
   },
+  "scripts": {
+    "test": "grunt test",
+    "start": "grunt"
+  },
   "keywords": [
     "midi"
   ],
-  "author": "Shaun Dern and Steve Salazar",
+  "author": "Shaun Dern & Steve Salazar",
   "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "270718ea3cedf08aa0fed780b81a78e17c981f41",
@@ -21,6 +22,14 @@
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-watch": "~0.4.3"
+    "grunt-contrib-watch": "~0.4.3",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jasmine": "~0.4.2",
+    "grunt-coffeelint": "0.0.6",
+    "coffeescript-concat": "~1.0.4",
+    "grunt-jasmine-node": "~0.1.0",
+    "lodash": "~1.2.1",
+    "grunt-contrib-clean": "~0.4.1"
   }
 }

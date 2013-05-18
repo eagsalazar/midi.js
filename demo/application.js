@@ -30,6 +30,7 @@ $(function() {
     var reader = new FileReader();
     reader.onloadend = function (e) {
       sequencer.set({midiFile: e.target.result});
+      $('#play').text('Pause');
       sequencer.play();
     };
     reader.readAsDataURL(file);

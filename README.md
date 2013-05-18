@@ -9,9 +9,12 @@ Development
 - `npm install`
 - `grunt`
 
+Checkout demos @ `http://localhost:6888/demo/`
+
 Grunt Tasks
 -----------
 
-- `grunt coffee` - Compile coffeescript
-- `grunt watch` - Compile coffeescript when .coffee files are saved
+- `grunt` - Compile coffeescript when .coffee files are saved
+- `grunt test` - Run jasmine tests
+- `grunt release` - Generate midi.js and midi.min.js
 
