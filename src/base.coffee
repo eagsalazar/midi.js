@@ -9,7 +9,5 @@ class Midi.Base
     @
 
   set: (options) ->
-    # FIXME - not deep copy!
-    # _.merge not available in underscore
-    _.extend(@options, options)
+    _.merge(@options, options)
     @
