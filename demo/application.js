@@ -8,22 +8,31 @@ $(function() {
         device: device,
         midiFile: song
       });
-      $('#play').text('Pause');
-      sequencer.play();
-
-      $('#stop').on('click', function () {
-        sequencer.stop();
-        $('#play').text('Play');
-      });
-
-      $('#play').on('click', function () {
-        sequencer.play();
-        if(sequencer.playState() == 'PLAYING') {
-          $('#play').text('Pause');
-        } else {
-          $('#play').text('Play');
-        }
-      });
     }
   });
+
+  $('#stop').on('click', function () {
+    sequencer.stop();
+    $('#play').text('Play');
+  });
+
+  $('#play').on('click', function () {
+    sequencer.play();
+    if(sequencer.playState() == 'PLAYING') {
+      $('#play').text('Pause');
+    } else {
+      $('#play').text('Play');
+    }
+  });
+
+  $('input').on('change', function (event) {
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function (e) {
+      sequencer.set({midiFile: e.target.result});
+      sequencer.play();
+    };
+    reader.readAsDataURL(file);
+  });
+
 });
