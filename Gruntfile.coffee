@@ -24,7 +24,7 @@ module.exports = (grunt) ->
         options:
           join: true
         files:
-          "midi.js": ["src/base.coffee", "src/**/*.coffee"]
+          "midi.js": ["src/base.coffee", "src/amplifier.coffee", "src/instrument.coffee", "src/**/*.coffee"]
 
     coffeelint:
       app: ['src/**/*.coffee', 'spec/**/*.coffee']
