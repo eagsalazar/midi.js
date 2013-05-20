@@ -1,5 +1,4 @@
 node_modules
-build
 spec/build
 .grunt
 _specRunner.html
