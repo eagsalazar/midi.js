@@ -26,9 +26,6 @@ module.exports = (grunt) ->
         files:
           "midi.js": ["src/base.coffee", "src/amplifier.coffee", "src/instrument.coffee", "src/**/*.coffee"]
 
-    coffeelint:
-      app: ['src/**/*.coffee', 'spec/**/*.coffee']
-
     jasmine:
       tests:
         src: ['build/base.js', 'build/**/*.js']
@@ -68,10 +65,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-contrib-jasmine')
-  grunt.loadNpmTasks('grunt-coffeelint')
   grunt.loadNpmTasks('grunt-contrib-clean')
 
-  grunt.registerTask('test', ['coffeelint', 'clean:test', 'coffee:dist', 'coffee:spec', 'jasmine'])
+  grunt.registerTask('test', ['clean:test', 'coffee:dist', 'coffee:spec', 'jasmine'])
   grunt.registerTask('default', ['clean:all', 'coffee:compile', 'connect', 'watch'])
   grunt.registerTask('release', ['clean:all', 'coffee:compile', 'coffee:dist', 'concat', 'uglify'])
 
