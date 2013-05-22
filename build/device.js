@@ -1,20 +1,6 @@
 (function() {
-  var n, name, octave,
-    __hasProp = {}.hasOwnProperty,
+  var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-  Midi.NOTES_TO_NUMBER = {};
-
-  Midi.NOTES = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
-
-  n = 21;
-
-  while (n <= 108) {
-    octave = (n - 12) / 12 >> 0;
-    name = Midi.NOTES[n % 12] + octave;
-    Midi.NOTES_TO_NUMBER[name] = n;
-    n++;
-  }
 
   Midi.Device = (function(_super) {
     __extends(Device, _super);
@@ -23,7 +9,7 @@
       onReady: function(self) {
         return {};
       },
-      soundFont: Midi.Soundfont.acoustic_grand_piano
+      soundFont: Midi.Soundfont.FluidR3_GM["Banjo"]
     };
 
     function Device(options) {
@@ -89,20 +75,19 @@
     };
 
     Device.prototype._soundFontLoader = function() {
-      var notes, processedCount,
+      var processedCount,
         _this = this;
 
-      notes = _.keys(this.options.soundFont);
-      processedCount = 0;
-      return _.each(notes, function(note) {
-        var key64b, keyBin;
+      processedCount = 21;
+      return _.each(this.options.soundFont, function(note) {
+        var note64b, noteBin;
 
-        key64b = _this.options.soundFont[note].split(",")[1];
-        keyBin = Base64Binary.decodeArrayBuffer(key64b);
-        return _this._ctx.decodeAudioData(keyBin, function(buffer) {
+        note64b = note.split(",")[1];
+        noteBin = Base64Binary.decodeArrayBuffer(note64b);
+        return _this._ctx.decodeAudioData(noteBin, function(buffer) {
+          _this._audioBuffers[processedCount] = buffer;
           processedCount += 1;
-          _this._audioBuffers[Midi.NOTES_TO_NUMBER[note]] = buffer;
-          if (processedCount === notes.length - 1) {
+          if (processedCount === 108) {
             return _this.options.onReady(_this);
           }
         });

@@ -1,5 +1,6 @@
 node_modules
 spec/build
+soundfonts
 .grunt
 _specRunner.html
 

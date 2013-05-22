@@ -1,19 +1,8 @@
-Midi.NOTES_TO_NUMBER = {} # C8  == 108
-Midi.NOTES = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-
-n = 21
-while n <= 108
-  octave = (n - 12) / 12 >> 0
-  name = Midi.NOTES[n % 12] + octave
-  Midi.NOTES_TO_NUMBER[name] = n
-  n++
-
-
 class Midi.Device extends Midi.Base
 
   defaultOptions:
     onReady: (self) -> {}
-    soundFont: Midi.Soundfont.acoustic_grand_piano
+    soundFont: Midi.Soundfont.FluidR3_GM["Banjo"]
 
   constructor: (options) ->
     super options
@@ -65,17 +54,15 @@ class Midi.Device extends Midi.Base
     source
 
   _soundFontLoader: ->
-    notes = _.keys(@options.soundFont)
-    processedCount = 0
+    processedCount = 21
+    _.each @options.soundFont, (note) =>
+      note64b = note.split(",")[1]
+      noteBin = Base64Binary.decodeArrayBuffer(note64b)
 
-    _.each notes, (note) =>
-      key64b = @options.soundFont[note].split(",")[1]
-      keyBin = Base64Binary.decodeArrayBuffer(key64b)
-
-      @_ctx.decodeAudioData keyBin, (buffer) =>
+      @_ctx.decodeAudioData noteBin, (buffer) =>
+        @_audioBuffers[processedCount] = buffer
         processedCount += 1
-        @_audioBuffers[Midi.NOTES_TO_NUMBER[note]] = buffer
 
-        if processedCount == notes.length - 1
+        if processedCount == 108
           @options.onReady(@)
 
