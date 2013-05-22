@@ -3,6 +3,7 @@ $(function() {
   //'
   var sequencer;
   device = new Midi.Device({
+    soundFont: Midi.Soundfont.FluidR3_GM["Banjo"],
     onReady: function (device) {
       sequencer = new Midi.Sequencer({
         device: device,

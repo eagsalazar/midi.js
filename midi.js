@@ -1,4 +1,3 @@
-/*! midi.js - v0.0.0 - 2013-05-22 */
 (function() {
   var _ref,
     __hasProp = {}.hasOwnProperty,
@@ -47,16 +46,22 @@
       onReady: function(self) {
         return {};
       },
-      soundFont: Midi.Soundfont.FluidR3_GM["Banjo"]
+      soundFont: nil
     };
 
     function Device(options) {
-      Device.__super__.constructor.call(this, options);
+      this._ctx = new window.webkitAudioContext();
       this._sources = {};
       this._audioBuffers = {};
-      this._ctx = new window.webkitAudioContext();
-      this._soundFontLoader();
+      Device.__super__.constructor.call(this, options);
     }
+
+    Device.prototype.set = function(options) {
+      Device.__super__.set.call(this, options);
+      if (options.soundFont) {
+        return this._loadSoundFont();
+      }
+    };
 
     Device.prototype.noteOn = function(channel, noteNumber, velocity, startTime) {
       var source;
@@ -112,7 +117,7 @@
       return source;
     };
 
-    Device.prototype._soundFontLoader = function() {
+    Device.prototype._loadSoundFont = function() {
       var processedCount,
         _this = this;
 

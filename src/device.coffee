@@ -2,14 +2,18 @@ class Midi.Device extends Midi.Base
 
   defaultOptions:
     onReady: (self) -> {}
-    soundFont: Midi.Soundfont.FluidR3_GM["Banjo"]
+    soundFont: nil
 
   constructor: (options) ->
-    super options
+    @_ctx = new window.webkitAudioContext()
     @_sources = {}
     @_audioBuffers = {}
-    @_ctx = new window.webkitAudioContext()
-    @_soundFontLoader()
+    super options
+
+  set: (options) ->
+    super options
+    if options.soundFont
+      @_loadSoundFont()
 
   noteOn: (channel, noteNumber, velocity, startTime) ->
     return @ if (!@_audioBuffers[noteNumber])
@@ -53,7 +57,7 @@ class Midi.Device extends Midi.Base
 
     source
 
-  _soundFontLoader: ->
+  _loadSoundFont: ->
     processedCount = 21
     _.each @options.soundFont, (note) =>
       note64b = note.split(",")[1]

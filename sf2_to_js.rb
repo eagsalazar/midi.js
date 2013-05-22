@@ -91,7 +91,7 @@ class Sf2ToJs
 
   def instruments
     @instruments = cmdfile 'inst 1' do |cmd_path|
-      raw = `fluidsynth -i -f #{cmd_path} #{@sf2_path}`
+      raw = sh("fluidsynth -i -f #{cmd_path} #{@sf2_path}")
       raw.scan(/^(\d\d\d)-(\d\d\d) *(.*)$/).map do |inst|
         {bank: inst[0].to_i, id: inst[1].to_i, name: inst[2]}
       end

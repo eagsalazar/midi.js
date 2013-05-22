@@ -18,14 +18,30 @@ Grunt Tasks
 - `grunt test` - Run jasmine tests
 - `grunt release` - Generate midi.js and midi.min.js
 
+sf2\_to\_js - generates js versions of soundfont files
+-----------
+
+- required gems: midilib, fileutils, colorize, base64
+- required system (brew install): fluidsynth, oggenc
+- usage:
+```ruby
+require_relative 'sf2_to_js'
+sf = Sf2ToJs.new "./FluidR3_GM.sf2", [105], "~/soundfonts" # Banjo
+sf.to_js # -> ~/soundfonts/FluidR3_GM.Banjo.sf2.js
+```
+
+- thor script (gem install thor)
+  - thor list
+  - thor help sf2:to_js
+
 TODO
 -----------
+
 - device.coffee
   - pitch bend
 - sequencer.coffee
   - some bug where things sound assy
   - onNoteOn, onNoteOff events
-
-- sf2_to_js
-  - only reads fonts in bank 000, read all.
+  - play to multiple "devices" at once, instrument per channel
+  - set/force instrument on channel
 
