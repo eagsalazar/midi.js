@@ -1,5 +1,9 @@
 midi.js
 =======
+JS/CoffeeScript library to read/play midi files.  Requires soundfonts to be converted
+first and available as sf2.js files.  See link for how to generate your sound fonts:
+
+https://github.com/eagsalazar/sf2_to_js
 
 Development
 -----------
