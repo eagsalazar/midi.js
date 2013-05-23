@@ -29,6 +29,7 @@ TODO
   - pitch bend
 - sequencer.coffee
   - some bug where things sound assy
+  - soundfont banks (might be working)
   - onNoteOn, onNoteOff events
   - play to multiple "devices" at once, instrument per channel
   - set/force instrument on channel
