@@ -5,6 +5,8 @@ first and available as sf2.js files.  See link for how to generate your sound fo
 
 https://github.com/eagsalazar/sf2_to_js
 
+** Only works on recent versions of Chrome! **
+
 Development
 -----------
 
