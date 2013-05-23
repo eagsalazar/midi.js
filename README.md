@@ -33,4 +33,5 @@ TODO
   - onNoteOn, onNoteOff events
   - play to multiple "devices" at once, instrument per channel
   - set/force instrument on channel
+  - remove dependence on jasmid
 
