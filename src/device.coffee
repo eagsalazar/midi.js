@@ -2,7 +2,7 @@ class Midi.Device extends Midi.Base
 
   defaultOptions:
     onReady: (self) -> {}
-    soundFont: nil
+    soundFont: undefined
 
   constructor: (options) ->
     @_ctx = new window.webkitAudioContext()

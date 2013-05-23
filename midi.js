@@ -46,7 +46,7 @@
       onReady: function(self) {
         return {};
       },
-      soundFont: nil
+      soundFont: void 0
     };
 
     function Device(options) {
